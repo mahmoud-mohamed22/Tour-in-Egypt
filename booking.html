@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Beyond Time - Book Your Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="booking-page">
+
+    <div class="bg-overlay"></div>
+
+    <div class="booking-container">
+        <div class="logo-area">
+            <img src="gold.jpg" alt="Nour Beyond Time Logo" class="booking-logo">
+            <h2>NOUR BEYOND TIME</h2>
+        </div>
+
+        <div class="form-header">
+            <h1>DESIGN YOUR JOURNEY THROUGH TIME</h1>
+            <p>Enter your credentials to secure your golden ticket to the ancient world.</p>
+        </div>
+
+        <form class="booking-form" action="destinations.html" method="GET">
+    
+    <div class="form-grid">
+        <div class="input-group">
+            <label for="explorer-name">EXPLORER NAME</label>
+            <input type="text" id="explorer-name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="input-group">
+            <label for="explorer-email">EMAIL ADDRESS</label>
+            <input type="email" id="explorer-email" placeholder="username@domain.com" required>
+        </div>
+
+        <div class="input-group">
+            <label for="destination">CHOOSE YOUR DESTINATION</label>
+            <select id="destination" required>
+                <option value="" disabled selected>Select the era or monument...</option>
+                <option value="pyramids">The Great Pyramids of Giza</option>
+                <option value="luxor">Karnak & Luxor Temples</option>
+                <option value="abusingel">Abu Simbel Temple</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="explorer-age">YOUR AGE</label>
+            <input type="number" id="explorer-age" placeholder="e.g. 21" min="1" max="120" required>
+        </div>
+
+        <div class="input-group">
+    <label for="explorer-country">YOUR COUNTRY</label>
+    <input type="text" id="explorer-country" placeholder="e.g. Egypt" required>
+</div>
+
+<div class="input-group">
+    <label for="explorer-phone">PHONE NUMBER</label>
+    <input type="tel" id="explorer-phone" placeholder="e.g. +20 123 456 7890" required>
+</div>
+    </div>
+
+    <button type="submit" class="submit-btn">LAUNCH CHRONO-JOURNEY →</button>
+    <a href="index.html" class="back-home">← Return to Main Gates</a>
+</form>
+        
+    </div>
+<script src="main.js"></script>>
+</body>
+</html>
