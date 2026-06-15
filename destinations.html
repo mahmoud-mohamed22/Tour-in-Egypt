@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Beyond Time - Interactive Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="map-page">
+
+    <div class="bg-overlay"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="gold.jpg" alt="Logo" class="nav-logo">
+            <span>NOUR BEYOND TIME</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="destinations.html" class="active">DESTINATIONS</a></li>
+            <li><a href="#">ABOUT EGYPT</a></li>
+            <li><a href="#">HISTORY</a></li>
+            <li><a href="#">GALLERY</a></li>
+        </ul>
+    </nav>
+
+    <main class="map-container">
+        
+        <div class="map-wrapper">
+            <img src="egypt.map.png" alt="Egypt Interactive Map" class="egypt-map-img">
+
+            <div class="map-hotspot" style="top: 35%; left: 48%;">
+                <div class="pin"></div>
+                <div class="pulse"></div>
+                <span class="location-name">Giza</span>
+                
+                <div class="map-tooltip">
+                    <img src="pyramids.webp" alt="Pyramids" class="tooltip-img">
+                    <div class="tooltip-info">
+                        <h3>Great Pyramid of Giza</h3>
+                        <p>Virtual Tour Available</p>
+                        <a href="tours/giza-360.html" class="visit-btn">VISIT</a>    
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-hotspot" style="top: 68%; left: 63%;">
+                <div class="pin"></div>
+                <div class="pulse"></div>
+                <span class="location-name">Luxor</span>
+                
+                <div class="map-tooltip">
+                    <img src="luxor.avif" alt="Luxor Temple" class="tooltip-img">
+                    <div class="tooltip-info">
+                        <h3>Karnak & Luxor Temples</h3>
+                        <p>Virtual Tour Available</p>
+                        <a href="tours/luxor-360.html" class="visit-btn">VISIT</a>   
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-hotspot" style="top: 82%; left: 67%;">
+                <div class="pin"></div>
+                <div class="pulse"></div>
+                <span class="location-name">Aswan</span>
+                
+                <div class="map-tooltip">
+                    <img src="aswan.avif" alt="Abu Simbel" class="tooltip-img">
+                    <div class="tooltip-info">
+                        <h3>Abu Simbel Temple</h3>
+                        <p>Virtual Tour Available</p>
+                        <a href="tours/aswan-360.html" class="visit-btn">VISIT</a> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

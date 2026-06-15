@@ -542,3 +542,204 @@ body.booking-page::before {
     text-decoration: underline; 
     transform: translateX(-3px); 
 }
+
+body.map-page {
+    background-color: #070503 !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important; 
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.map-page .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 40px 0 20px !important;
+    background: rgba(7, 5, 3, 0.98) !important;
+    border-bottom: 1px solid rgba(223, 183, 108, 0.15);
+    z-index: 9999 !important;
+    box-sizing: border-box;
+}
+
+.map-page .logo {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px;
+}
+
+.map-page .nav-logo {
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain;
+}
+
+.map-page .logo span {
+    font-family: 'Cinzel', serif;
+    color: #dfb76c;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.map-page .nav-links {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    gap: 25px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.map-page .nav-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.map-page .nav-links a.active,
+.map-page .nav-links a:hover {
+    color: #dfb76c;
+}
+
+.map-container {
+    display: block !important;
+    max-width: 750px !important; 
+    margin: 120px auto 40px auto !important; 
+    padding: 0 20px !important;
+    box-sizing: border-box;
+}
+
+.map-wrapper {
+    position: relative !important;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(223, 183, 108, 0.2);
+    overflow: visible !important; 
+}
+
+.egypt-map-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 12px;
+    filter: brightness(0.5) contrast(1.1); 
+}
+
+.map-hotspot {
+    position: absolute !important;
+    transform: translate(-50%, -50%) !important;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.map-hotspot .pin {
+    width: 12px;
+    height: 12px;
+    background-color: #dfb76c;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #dfb76c;
+}
+
+.map-hotspot .pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #dfb76c;
+    border-radius: 50%;
+    animation: mapPulse 2s infinite ease-out;
+    opacity: 0;
+}
+
+@keyframes mapPulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+.map-hotspot .location-name {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.map-hotspot .map-tooltip {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    width: 240px;
+    background: rgba(15, 11, 8, 0.98);
+    border: 1px solid #dfb76c;
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 200;
+}
+
+.map-hotspot:hover .map-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+}
+
+.map-tooltip .tooltip-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.tooltip-info {
+    padding: 12px;
+    text-align: center;
+}
+
+.tooltip-info h3 {
+    margin: 0 0 5px 0;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+}
+
+.tooltip-info p {
+    margin: 0 0 12px 0;
+    color: #a38450;
+    font-size: 11px;
+}
+
+.tooltip-info .visit-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    background: linear-gradient(135deg, #dfb76c 0%, #bfa169 100%);
+    color: #070503;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
