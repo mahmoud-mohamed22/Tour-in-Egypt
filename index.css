@@ -15,7 +15,6 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    /* تم تعديل مسار الصورة هنا لقراءة المجلد الجديد */
     background: linear-gradient(to bottom, rgba(13, 9, 6, 0.4) 0%, rgba(13, 9, 6, 0.1) 50%, rgba(13, 9, 6, 0.7) 100%), 
                 url('images/nour tour.jpeg') no-repeat center center/cover;
     display: flex;
@@ -334,7 +333,6 @@ body {
 
 body.booking-page {
     font-family: 'Poppins', sans-serif;
-    /* تم تعديل مسار الصورة هنا لقراءة المجلد الجديد */
     background-image: url('images/nour tour.jpeg');
     background-size: cover;
     background-position: center;
@@ -747,9 +745,7 @@ body.map-page {
     letter-spacing: 1px;
 }
 
-/* ==========================================================================
-   إحداثيات المحافظات على الخريطة (Hotspots Positions)
-   ========================================================================== */
+
 
 .hotspot-alexandria {
     top: 17%;
@@ -786,33 +782,23 @@ body.map-page {
     left: 68%;
 }
 
-/* ==========================================================================
-   حل مشكلة اختفاء الـ Tooltip في شمال الخريطة (الإسكندرية)
-   ========================================================================== */
 
-/* بنلغي الـ bottom القديم ونخليه يفتح لتحت مع إزاحة مناسبة */
 .map-hotspot .map-tooltip.tooltip-down {
     bottom: auto !important;
     top: 35px !important;
-    /* بنعدل الأنيمايشن عشان يفتح بسلاسة من تحت النقطة */
+    
     transform: translateX(-50%) scale(0.8);
 }
 
-/* بنظبط شكل ظهور الأنيمايشن وقت الـ Hover */
 .map-hotspot:hover .map-tooltip.tooltip-down {
     transform: translateX(-50%) scale(1);
 }
 
-/* ==========================================================================
-   ترتيب الطبقات منعاً لتداخل المحافظات وقت الـ Hover
-   ========================================================================== */
 
-/* أي نقطة تقف عليها بالماوس تاخد أعلى أولوية وتطلع فوق كل النقط التانية */
 .map-hotspot:hover {
     z-index: 999 !important;
 }
 
-/* بنضمن إن الـ Tooltip النشط حالياً يظهر فوق أي كتابة تانية في الخريطة */
 .map-hotspot:hover .map-tooltip {
     z-index: 1000 !important;
 }
