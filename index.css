@@ -15,8 +15,9 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
+    /* تم تعديل مسار الصورة هنا لقراءة المجلد الجديد */
     background: linear-gradient(to bottom, rgba(13, 9, 6, 0.4) 0%, rgba(13, 9, 6, 0.1) 50%, rgba(13, 9, 6, 0.7) 100%), 
-                url('nour\ tour.jpeg') no-repeat center center/cover;
+                url('images/nour tour.jpeg') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -94,7 +95,7 @@ body {
     color: #dfb76c;
     text-shadow: 0 0 10px rgba(223, 183, 108, 0.5);
 }
-*/
+
 .nav-links a.active::after {
     content: '';
     position: absolute;
@@ -124,6 +125,7 @@ body {
     border-color: #dfb76c;
     box-shadow: 0 0 10px rgba(223, 183, 108, 0.3);
 }
+
 .hero-content {
     text-align: left;
     align-self: flex-start;
@@ -132,7 +134,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     padding-left: 5%;    
     margin-left: -55px;  
     margin-top: 55px;    
@@ -146,11 +147,9 @@ body {
     margin: 0;
     line-height: 1.2;
     white-space: nowrap;
-    
     background: linear-gradient(135deg, #fffcf4 0%, #d4aa5b 50%, #a38450 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
     filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.9));
 }
 
@@ -161,6 +160,7 @@ body {
     max-width: 530px; 
     margin: 18px 0;
 }
+
 .line-left, .line-right {
     flex-grow: 1;
     height: 1px;
@@ -331,9 +331,11 @@ body {
         display: none; 
     }
 }
+
 body.booking-page {
     font-family: 'Poppins', sans-serif;
-    background-image: url('nour\ tour.jpeg');
+    /* تم تعديل مسار الصورة هنا لقراءة المجلد الجديد */
+    background-image: url('images/nour tour.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -527,6 +529,7 @@ body.booking-page::before {
         font-size: 24px;
     }
 }
+
 .booking-page .back-home {
     display: inline-block;
     margin-top: 25px; 
@@ -742,4 +745,43 @@ body.map-page {
     font-size: 12px;
     border-radius: 4px;
     letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   إحداثيات المحافظات على الخريطة (Hotspots Positions)
+   ========================================================================== */
+
+.hotspot-alexandria {
+    top: 22%;
+    left: 41%;
+}
+
+.hotspot-giza {
+    top: 35%;
+    left: 48%;
+}
+
+.hotspot-cairo {
+    top: 32%;
+    left: 53%;
+}
+
+.hotspot-sinai {
+    top: 43%;
+    left: 69%;
+}
+
+.hotspot-sohag {
+    top: 59%;
+    left: 59%;
+}
+
+.hotspot-luxor {
+    top: 68%;
+    left: 63%;
+}
+
+.hotspot-aswan {
+    top: 82%;
+    left: 67%;
 }
