@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Citadel of Qaitbay | Nour Beyond Time</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: linear-gradient(to bottom, rgba(13, 9, 6, 0.45), rgba(13, 9, 6, 0.6)), url('images/bg1.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            color: #e5d5c5;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        
+        .monument-hero {
+            height: 100vh;
+            position: relative;
+            background-image: url('images/alex.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        
+        .monument-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(13, 9, 6, 0.8) 85%, #0d0906 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .location-tag {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            letter-spacing: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(223, 183, 108, 0.4);
+            padding-bottom: 5px;
+        }
+
+        .monument-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 65px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #dddddd;
+            font-style: italic;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scroll-down-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 11px;
+            letter-spacing: 3px;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        
+        .history-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 25px 100px 25px;
+            background-color: #0d0906;
+        }
+
+        
+        .quick-facts {
+            background: linear-gradient(135deg, #140e0a 0%, #1a130f 100%);
+            border: 1px solid rgba(223, 183, 108, 0.2);
+            border-radius: 12px;
+            padding: 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 100px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .fact-item {
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+        .fact-item strong {
+            color: #dfb76c;
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        
+        .history-block {
+            margin-bottom: 120px;
+            position: relative;
+            padding-left: 70px;
+        }
+
+        
+        .block-number {
+            font-family: 'Cinzel', serif;
+            font-size: 110px;
+            color: rgba(223, 183, 108, 0.05);
+            position: absolute;
+            left: 0;
+            top: -55px;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .history-block h2 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 32px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .history-block p {
+            color: #cbbcb0;
+            font-size: 17px;
+            margin-bottom: 22px;
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        .history-block p strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        
+        .history-block ul {
+            list-style: none;
+            margin-top: 20px;
+            padding-left: 5px;
+        }
+
+        .history-block ul li {
+            margin-bottom: 20px;
+            color: #cbbcb0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .history-block ul li::before {
+            content: '✦';
+            color: #dfb76c;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 11px;
+        }
+
+        .history-block ul li strong {
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        
+        .historical-quote {
+            margin: 40px 0;
+            padding: 30px;
+            border-left: 3px solid #dfb76c;
+            background: rgba(223, 183, 108, 0.03);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 19px;
+            color: #e5d5c5;
+            line-height: 1.6;
+        }
+
+        
+        .back-to-map-wrapper {
+            text-align: center;
+            padding-bottom: 100px;
+            background-color: #0d0906;
+        }
+
+        .btn-back-map {
+            display: inline-block;
+            padding: 16px 40px;
+            border: 1px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 13px;
+            transition: all 0.5s ease;
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        .btn-back-map:hover {
+            background: #dfb76c;
+            color: #0d0906;
+            box-shadow: 0 0 30px rgba(223, 183, 108, 0.35);
+            transform: translateY(-2px);
+        }
+
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -12px); }
+            60% { transform: translate(-50%, -6px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="monument-hero">
+        <div class="hero-content">
+            <span class="location-tag">ALEXANDRIA, EGYPT</span>
+            <h1>THE CITADEL OF QAITBAY</h1>
+            <p class="subtitle">"The Guardian of the North, Born from the Shattered Stones of the Ancient Pharos Lighthouse"</p>
+        </div>
+        <div class="scroll-down-hint">SCROLL TO UNVEIL HISTORY ↓</div>
+    </header>
+
+    <main class="history-container">
+        
+        <section class="info-card-section">
+            <div class="quick-facts">
+                <div class="fact-item"><strong>Sultan / Builder</strong>Sultan Al-Ashraf Sayf al-Din Qa'it Bay</div>
+                <div class="fact-item"><strong>Year of Foundation</strong>1477 AD (882 AH)</div>
+                <div class="fact-item"><strong>Strategic Location</strong>Pharos Island, Eastern Harbour</div>
+                <div class="fact-item"><strong>Architectural Type</strong>Islamic Medieval Maritime Fortress</div>
+            </div>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">01</div>
+            <h2>The Genesis & The Ghost of Pharos</h2>
+            <p>In the twilight of the 15th century, the Mamluk Sultanate of Egypt stood under the looming shadow of naval conquests from the rising Ottoman Empire. Recognizing the absolute vulnerability of Alexandria's northern coastline, <strong>Sultan Al-Ashraf Sayf al-Din Qa'it Bay</strong> decreed the construction of an impenetrable bastion to lock down the Eastern Harbour.</p>
+            <p>The chosen ground held immense, almost mythical historical gravity: it was built directly upon the foundation ruins of the legendary <strong>Pharos Lighthouse</strong>—one of the Seven Wonders of the Ancient World—which had been utterly toppled by violent earthquakes in the 11th and 14th centuries. Engineers and builders directly salvaged the colossal fallen granite blocks and ancient masonry of the lighthouse, incorporating them straight into the citadel's deep foundations and towering walls, intertwining two grand eras of Egyptian history into one structure.</p>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">02</div>
+            <h2>Military Architecture & Defenses</h2>
+            <p>Spanning an area of over 17,500 square meters, the Citadel of Qaitbay stands as an absolute masterclass in medieval Islamic military engineering. Built entirely out of dense, sea-resistant limestone, its layout was designed to survive brutal, prolonged maritime sieges.</p>
+            
+            <div class="historical-quote">
+                "A fortress so impenetrable, it stood as a silent warning to any armada that dared gaze upon the coast of Alexandria."
+            </div>
+
+            <ul>
+                <li><strong>The Outer Defensive Wall:</strong> Encloses the entire complex, heavily outfitted with defensive bulwarks, covert arrow slits, strategic gun loops, and thick embrasures for heavy artillery.</li>
+                <li><strong>The Inner Wall & Barracks:</strong> Acts as a secondary line of sheer defense, housing deep tunnels, secure storage vaults for black powder, and specialized quarters for the garrison's frontline troops.</li>
+                <li><strong>The Main Keep (The Square Castle):</strong> A titanic, three-story square tower dominating the northeastern corner of the courtyard. The ground floor holds the citadel’s historic mosque, designed with pristine Islamic motifs. The upper stories contain tactical command rooms, defensive cisterns for fresh water, and high lookout platforms offering a 360-degree view of the Mediterranean.</li>
+            </ul>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">03</div>
+            <h2>Centuries of Fire, Siege & Modern Revival</h2>
+            <p>For centuries, the citadel remained the beating heart of Egypt’s northern defense. When the Ottomans finally conquered Egypt, they maintained the fortress with pride, staffing it with corps of artillerymen. In the 19th century, the visionary ruler <strong>Muhammad Ali Pasha</strong> undertook massive restoration, refitting the ancient battlements with state-of-the-art heavy coastal cannons to protect the country from European empires.</p>
+            <p>The fortress faced its darkest hour in <strong>1882 during the British Bombardment of Alexandria</strong>. The citadel was heavily shelled, its majestic walls cracked, and its main keeps left shattered. It lay abandoned and neglected for decades until the early 20th century, when the Egyptian <em>Comité for the Conservation of Monuments of Arab Art</em> stepped in. They executed a legendary, painstaking multi-year restoration project, rebuilding the broken towers and walls back to their 1477 glory, preserving it forever as a symbol of eternal Egyptian defiance.</p>
+        </section>
+
+    </main>
+
+    <div class="back-to-map-wrapper">
+        <a href="destinations.html" class="btn-back-map">← RETURN TO TIME MAP</a>
+    </div>
+
+</body>
+</html>
