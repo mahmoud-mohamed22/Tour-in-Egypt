@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Egypt | Nour Beyond Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: linear-gradient(to bottom, rgba(13, 9, 6, 0.45), rgba(13, 9, 6, 0.6)), url('images/bg1.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e5d5c5;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .monument-hero {
+            height: 100vh;
+            position: relative;
+            background-image: url('images/egypt-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .monument-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(13, 9, 6, 0.8) 85%, #0d0906 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .location-tag {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            letter-spacing: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(223, 183, 108, 0.4);
+            padding-bottom: 5px;
+        }
+
+        .monument-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 65px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #dddddd;
+            font-style: italic;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scroll-down-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 11px;
+            letter-spacing: 3px;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .history-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 25px 100px 25px;
+            background-color: transparent;
+        }
+
+        .history-block {
+            margin-bottom: 120px;
+            position: relative;
+            padding: 35px 40px 35px 80px;
+            background: rgba(13, 9, 6, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 10px;
+            border: 1px solid rgba(223, 183, 108, 0.1);
+        }
+
+        .block-number {
+            font-family: 'Cinzel', serif;
+            font-size: 110px;
+            color: rgba(223, 183, 108, 0.05);
+            position: absolute;
+            left: 0;
+            top: -55px;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .history-block h2 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 32px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .history-block p {
+            color: #cbbcb0;
+            font-size: 17px;
+            margin-bottom: 22px;
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        .history-block p strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .historical-quote {
+            margin: 40px 0;
+            padding: 30px;
+            border-left: 3px solid #dfb76c;
+            background: rgba(223, 183, 108, 0.03);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 19px;
+            color: #e5d5c5;
+            line-height: 1.6;
+        }
+
+        .back-to-map-wrapper {
+            text-align: center;
+            padding-bottom: 100px;
+            background-color: transparent;
+        }
+
+        .btn-back-map {
+            display: inline-block;
+            padding: 16px 40px;
+            border: 1px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 13px;
+            transition: all 0.5s ease;
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        .btn-back-map:hover {
+            background: #dfb76c;
+            color: #0d0906;
+            box-shadow: 0 0 30px rgba(223, 183, 108, 0.35);
+            transform: translateY(-2px);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -12px); }
+            60% { transform: translate(-50%, -6px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="monument-hero">
+        <div class="hero-content">
+            <span class="location-tag">KEMET | THE LAND OF PHARAOHS</span>
+            <h1>ANCIENT EGYPT</h1>
+            <p class="subtitle">"The Cradle of Human Civilization, Law, Science, and Architectural Immortality"</p>
+        </div>
+        <div class="scroll-down-hint">SCROLL TO UNVEIL THE TIMELINE ↓</div>
+    </header>
+
+    <main class="history-container">
+
+        <section class="history-block">
+            <div class="block-number">01</div>
+            <h2>The Gift of the Nile & Predynastic Dawn</h2>
+            <p>The story of Egypt begins with the waters of the Nile. Without this eternal river, the vast empire would have been nothing but a barren desert expanse. Around 5000 BC, early agricultural communities settled along the fertile banks, developing advanced farming techniques, pottery, and small organized chiefdoms. This era laid the foundational spiritual practices, establishing a deep reverence for nature, the sun, and the afterlife that would dictate Egyptian culture for millennia.</p>
+            <p>By 3100 BC, a legendary figure arose: <strong>King Narmer (Menes)</strong>. He successfully led military campaigns to unify Upper and Lower Egypt under a single sovereign crown, wearing the double Pschent crown. Narmer established the capital city of Memphis, creating the First Dynasty and officially triggering the historic dynastic timeline that would witness the rule of thirty successive pharaonic families.</p>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">02</div>
+            <h2>The Old Kingdom & The Age of Pyramids</h2>
+            <p>Spanning from the Third to the Sixth Dynasties, the Old Kingdom became synonymous with structural majesty and centralized authority. During this period, the Pharaoh was not merely a ruler but a living god on Earth, mediating between humanity and the divine cosmos. Economic prosperity and peace allowed the state to mobilize massive labor forces for public works on a scale never before witnessed in human history.</p>
+            <div class="historical-quote">
+                "Man fears time, but time fears the Pyramids."
+            </div>
+            <p>Architectural evolution exploded under the vision of Imhotep, who engineered the Step Pyramid for King Djoser at Saqqara. This breakthrough culminated in the Fourth Dynasty with the construction of the Great Pyramids of Giza under Pharaohs Khufu, Khafre, and Menkaure. These monumental structures were not just tombs, but resurrection engines designed to launch the King's soul into the eternal celestial realm among the northern stars.</p>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">03</div>
+            <h2>The Middle Kingdom & The Literary Renaissance</h2>
+            <p>Following a chaotic era of civil war known as the First Intermediate Period, Mentuhotep II reunited the fractured nation, ushering in the Middle Kingdom. This epoch is heavily celebrated as the golden age of Egyptian culture, arts, and classical literature. The focus of the state shifted from building colossal pyramid tombs to massive infrastructure projects, irrigation expansion, and establishing widespread international trade routes reaching deep into the Levant and Nubia.</p>
+            <p>Rulers of this era prioritized defensive fortifications along the borders and expanded the cult of Osiris, democratizing the concept of the afterlife. No longer reserved exclusively for the royal pharaoh, salvation and eternal paradise became accessible to ordinary citizens who lived a just and moral life verified by the weighing of the heart ceremony.</p>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">04</div>
+            <h2>The New Kingdom & The Golden Imperial Age</h2>
+            <p>After defeating and expelling the foreign Hyksos invaders, Egypt entered the New Kingdom, transforming from an isolated kingdom into an aggressive, wealthy global empire. This era produced the most famous figures of antiquity: Hatshepsut, the masterful female pharaoh who expanded trade; Akhenaten, the heretic king who attempted to enforce monotheism; and Akhenaten's son, Tutankhamun, whose intact tomb stunned the modern world.</p>
+            <p>The zenith of imperial power was realized under <strong>Ramesses II (Ramesses the Great)</strong>. Ruling for over six decades, he signed the world's first recorded peace treaty after the Battle of Kadesh and blanketed the nation with architectural marvels like Abu Simbel and the expansion of Luxor Temple. The New Kingdom shifted royal burials to the hidden Valley of the Kings to safeguard sacred treasures from grave robbers.</p>
+        </section>
+
+        <section class="history-block">
+            <div class="block-number">05</div>
+            <h2>The Late Period & The Legacy of Kemet</h2>
+            <p>As internal strife and economic weakness took their toll, Egypt faced invasions from Libyans, Nubians, Assyrians, and Persians. Despite foreign political domination, Egyptian culture remained fiercely resilient, often absorbing and converting its conquerors. This era closed with the arrival of Alexander the Great in 332 BC, initiating the Ptolemaic Dynasty which concluded with the tragic reign of Cleopatra VII, after which Egypt was annexed into the Roman Empire.</p>
+            <p>Though the political state fell, the profound intellectual legacy of ancient Egypt endured. From foundational medical treatises, mathematics, and engineering principles to the majestic concepts of Ma'at (balance and justice), Kemet carved an immortal mark on human progress that continues to inspire the world today.</p>
+        </section>
+
+    </main>
+
+    <div class="back-to-map-wrapper">
+        <a href="index.html" class="btn-back-map">← RETURN TO MAIN</a>
+    </div>
+
+</body>
+</html>
