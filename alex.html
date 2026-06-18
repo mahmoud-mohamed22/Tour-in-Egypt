@@ -264,6 +264,61 @@
             40% { transform: translate(-50%, -12px); }
             60% { transform: translate(-50%, -6px); }
         }
+
+        .visual-gallery-section {
+            max-width: 950px;
+            margin: 0 auto 100px auto;
+        padding: 0 25px;
+        }
+
+        .gallery-section-title {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 28px;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .gallery-section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #888888;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .vertical-gallery-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 40px; 
+            align-items: center;
+        }
+
+        .gallery-stream-item {
+            width: 50%;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #140e0a; 
+            padding: 15px; 
+            border: 1px solid rgba(223, 183, 108, 0.2); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .gallery-stream-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-stream-item:hover img {
+            transform: scale(1.03);
+        }
+
     </style>
 </head>
 <body>
@@ -319,6 +374,23 @@
         </section>
 
     </main>
+
+    <div class="vertical-gallery-stream">
+        <div class="gallery-stream-item">
+            <img src="images/alex1.jpg" alt="Alexandria Scenic View">
+        </div>
+        <div class="gallery-stream-item">
+            <img src="images/alex2.jpg" alt="Qaitbay Citadel Close Up">
+        </div>
+        <div class="gallery-stream-item">
+            <img src="images/alex3.jpg" alt="Historical Architecture">
+        </div>
+        <div class="gallery-stream-item">
+            <img src="images/alex4.jpg" alt="The Mediterranean Horizon">
+        </div>
+    </div>
+
+
 
     <div class="back-to-map-wrapper">
         <a href="destinations.html" class="btn-back-map">← RETURN TO TIME MAP</a>
