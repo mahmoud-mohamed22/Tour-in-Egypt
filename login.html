@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Beyond Time - Log In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .actions-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .register-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(223, 183, 108, 0.05);
+        }
+
+        .register-btn:hover {
+            background: rgba(223, 183, 108, 0.1);
+            box-shadow: 0 0 25px rgba(223, 183, 108, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .back-home-link {
+            font-family: 'Poppins', sans-serif;
+            color: #8a7b6e;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .back-home-link:hover {
+            color: #dfb76c;
+        }
+
+        .form-grid-login {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .actions-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 15px;
+            }
+            .register-btn {
+                width: 100%;
+            }
+            .back-home-link {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="booking-page">
+
+    <div class="bg-overlay"></div>
+
+    <div class="booking-container">
+        <div class="logo-area">
+            <img src="images/gold.jpg" alt="Nour Beyond Time Logo" class="booking-logo">
+            <h2>NOUR BEYOND TIME</h2>
+        </div>
+
+        <div class="form-header">
+            <h1>ACCESS YOUR TIMELINE</h1>
+            <p>Enter your ancient credentials to resume your journey through time.</p>
+        </div>
+
+        <form class="booking-form" id="loginForm" action="destinations.html" method="GET">
+    
+            <div class="form-grid-login">
+                <div class="input-group">
+                    <label for="login-email">EMAIL ADDRESS</label>
+                    <input type="email" id="login-email" placeholder="username@domain.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password">PASSWORD</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <div class="actions-wrapper">
+                <button type="submit" class="submit-btn" style="margin-top: 0;">GO →</button>
+                <a href="auth.html" class="register-btn">CREATE NEW ACCOUNT</a>
+                <a href="index.html" class="back-home-link">← Return to Main Gates</a>
+            </div>
+        </form>
+        
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            localStorage.setItem('explorerEmail', email);
+            localStorage.setItem('isLoggedIn', 'true');
+        });
+    </script>
+</body>
+</html>
