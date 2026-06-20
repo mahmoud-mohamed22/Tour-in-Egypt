@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Nour Beyond Time</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: linear-gradient(to bottom, rgba(13, 9, 6, 0.6), rgba(13, 9, 6, 0.75)), url('images/bg1.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            color: #e5d5c5;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                margin-top: 40px;
+                gap: 80px;
+            }
+        }
+
+        .papyrus-scroll {
+            position: relative;
+            background-color: #e2c293;
+            background-image: 
+                linear-gradient(to right, rgba(74, 48, 17, 0.1) 0%, transparent 10%, transparent 90%, rgba(74, 48, 17, 0.1) 100%),
+                linear-gradient(180deg, #d3b07c 0%, #e2c293 15%, #e2c293 85%, #c5a16b 100%);
+            padding: 90px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 620px;
+            border-radius: 40px 40px 40px 40px / 10px 10px 10px 10px;
+            box-shadow: 
+                0 15px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(74, 48, 17, 0.3);
+            border-left: 2px solid rgba(74, 48, 17, 0.2);
+            border-right: 2px solid rgba(74, 48, 17, 0.2);
+        }
+
+        .papyrus-scroll::before {
+            content: "";
+            position: absolute;
+            top: -25px;
+            left: -5px;
+            right: -5px;
+            height: 45px;
+            background: linear-gradient(to bottom, #9e7843 0%, #c29d68 30%, #ffd9a3 50%, #9e7843 80%, #6e4e24 100%);
+            border-radius: 20px / 10px;
+            box-shadow: 
+                0 6px 10px rgba(0,0,0,0.4),
+                inset 0 4px 6px rgba(255,255,255,0.2),
+                inset 0 -4px 6px rgba(0,0,0,0.4);
+            border: 1px solid #5c3c14;
+        }
+
+        .papyrus-scroll::after {
+            content: "";
+            position: absolute;
+            bottom: -25px;
+            left: -5px;
+            right: -5px;
+            height: 45px;
+            background: linear-gradient(to bottom, #6e4e24 0%, #9e7843 20%, #ffd9a3 50%, #c29d68 70%, #9e7843 100%);
+            border-radius: 20px / 10px;
+            box-shadow: 
+                0 8px 12px rgba(0,0,0,0.5),
+                inset 0 4px 6px rgba(255,255,255,0.2),
+                inset 0 -4px 6px rgba(0,0,0,0.4);
+            border: 1px solid #5c3c14;
+        }
+
+        .papyrus-scroll h3 {
+            font-family: 'Cinzel', serif;
+            color: #261607;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed rgba(64, 38, 13, 0.4);
+            padding-bottom: 10px;
+            text-align: center;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+        }
+
+        .info-item label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            color: #5c3714;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 3px;
+        }
+
+        .info-item p, .info-item a {
+            color: #170d04;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .info-item a:hover {
+            color: #5c3714;
+            padding-left: 5px;
+        }
+
+        .historical-quote {
+            padding: 15px 20px;
+            border-left: 3px solid #5c3714;
+            background: rgba(92, 55, 20, 0.06);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 15px;
+            color: #361f0a;
+            line-height: 1.6;
+            margin-top: 15px;
+            border-radius: 2px;
+        }
+
+        .scroll-form {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(64, 38, 13, 0.04);
+            border: none;
+            border-bottom: 1px solid rgba(64, 38, 13, 0.4);
+            padding: 12px 10px;
+            color: #170d04;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        textarea.form-control {
+            resize: none;
+            min-height: 110px;
+            border: 1px dashed rgba(64, 38, 13, 0.3) !important;
+            background: rgba(64, 38, 13, 0.02);
+            border-radius: 4px;
+        }
+
+        .form-control:focus {
+            border-bottom-color: #261607;
+            background: rgba(64, 38, 13, 0.08);
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 10px;
+            top: 12px;
+            color: #5c3714;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-control:focus ~ label,
+        .form-control:not(:placeholder-shown) ~ label {
+            top: -15px;
+            left: 5px;
+            font-size: 10px;
+            color: #261607;
+            font-weight: 700;
+        }
+
+        .btn-dispatch {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #261607;
+            color: #261607;
+            font-family: 'Cinzel', serif;
+            background: transparent;
+            cursor: pointer;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            margin-top: 10px;
+        }
+
+        .btn-dispatch:hover {
+            background: #261607;
+            color: #e2c293;
+            box-shadow: 0 8px 20px rgba(64, 38, 13, 0.3);
+        }
+
+        .success-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e2c293;
+            background-image: linear-gradient(180deg, #d3b07c 0%, #e2c293 15%, #e2c293 85%, #c5a16b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            text-align: center;
+            padding: 80px 45px;
+            border-radius: 40px;
+            z-index: 2;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-overlay h3 {
+            color: #261607;
+            border: none;
+            font-size: 26px;
+        }
+
+        .success-overlay p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #361f0a;
+            font-weight: 600;
+        }
+
+        .back-to-map-wrapper {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+
+        .btn-back-map {
+            display: inline-block;
+            padding: 14px 35px;
+            border: 1px solid rgba(223, 183, 108, 0.4);
+            color: rgba(223, 183, 108, 0.7);
+            font-family: 'Cinzel', serif;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 12px;
+            transition: all 0.4s ease;
+            border-radius: 4px;
+        }
+
+        .btn-back-map:hover {
+            border-color: #dfb76c;
+            color: #dfb76c;
+            box-shadow: 0 0 20px rgba(223, 183, 108, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="main-container">
+        
+        <section class="papyrus-scroll">
+            <div class="info-section">
+                <h3>THE SCRIBE'S CHAMBERS</h3>
+                
+                <div class="info-item">
+                    <label>Direct Link (Email)</label>
+                    <a href="mailto:scribes@nourbeyondtime.com">scribes@nourbeyondtime.com</a>
+                </div>
+
+                <div class="info-item">
+                    <label>The High Council (Socials)</label>
+                    <a href="#" style="display: block; margin-bottom: 5px;">✦ Instagram / @NourBeyondTime</a>
+                    <a href="#">✦ LinkedIn / Elite-Scribes</a>
+                </div>
+
+                <div class="info-item">
+                    <label>Current Gateway</label>
+                    <p>Cairo, Egypt — The Golden Capital of the Sun</p>
+                </div>
+            </div>
+
+            <div class="historical-quote">
+                "Words turning into stones, and stones turning into stories. Speak, for time is listening."
+            </div>
+        </section>
+
+        <section class="papyrus-scroll" id="formPanel">
+            <form id="scrollForm" class="scroll-form" onsubmit="dispatchScroll(event)">
+                
+                <div style="width: 100%;">
+                    <h3>CARVE YOUR SCROLL</h3>
+                    
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="senderName" placeholder=" " required>
+                        <label for="senderName">Your Noble Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="senderEmail" placeholder=" " required>
+                        <label for="senderEmail">Your Return Email</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="senderMessage" placeholder=" " required></textarea>
+                        <label for="senderMessage">Your Message</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-dispatch" id="submitBtn">DISPATCH SCROLL</button>
+            </form>
+
+            <div class="success-overlay" id="successOverlay">
+                <h3>📜 DISPATCHED!</h3>
+                <p>Your message has traveled across the temporal winds. The high scribes shall return an echo soon.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="back-to-map-wrapper">
+        <a href="index.html" class="btn-back-map">← RETURN TO MAIN TIMELINE</a>
+    </div>
+
+    <script>
+        function dispatchScroll(event) {
+            event.preventDefault(); 
+            
+            const btn = document.getElementById('submitBtn');
+            const overlay = document.getElementById('successOverlay');
+            
+            btn.innerHTML = "DISPATCHING...";
+            btn.style.borderColor = "#261607";
+            btn.style.color = "#261607";
+            
+            setTimeout(() => {
+                overlay.classList.add('active');
+                document.getElementById('scrollForm').reset();
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
