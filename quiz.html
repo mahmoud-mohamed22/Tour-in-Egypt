@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sacred Quiz - Nour Beyond Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .quiz-header h1 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(223, 183, 108, 0.3);
+        }
+
+        .quiz-header p {
+            color: #8a7b6e;
+            font-size: 1.1rem;
+        }
+
+        .quiz-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(223, 183, 108, 0.2);
+            padding: 40px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 20%;
+            height: 100%;
+            background: #dfb76c;
+            box-shadow: 0 0 10px #dfb76c;
+            transition: width 0.4s ease;
+        }
+
+        .question-number {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(223, 183, 108, 0.15);
+            padding: 18px 25px;
+            border-radius: 4px;
+            color: #a89989;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            border-color: #dfb76c;
+            color: #fff;
+            background: rgba(223, 183, 108, 0.03);
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background: rgba(46, 117, 89, 0.2) !important;
+            border-color: #2e7559 !important;
+            color: #52d69f !important;
+        }
+
+        .option-btn.wrong {
+            background: rgba(168, 50, 50, 0.2) !important;
+            border-color: #a83232 !important;
+            color: #ff6b6b !important;
+        }
+
+        .results-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .results-screen h2 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .score-display span {
+            color: #dfb76c;
+        }
+
+        .feedback-text {
+            color: #a89989;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            background: transparent;
+            border: 2px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(223, 183, 108, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .action-btn.primary {
+            background: #dfb76c;
+            color: #0d0d0d;
+        }
+
+        .action-btn.primary:hover {
+            background: transparent;
+            color: #dfb76c;
+        }
+    </style>
+</head>
+<body class="booking-page">
+
+    <div class="bg-overlay"></div>
+
+    <div class="quiz-container">
+        
+        <div class="quiz-header">
+            <h1>THE SACRED QUIZ</h1>
+            <p>Prove your ultimate historical knowledge before diving into the interactive time map.</p>
+        </div>
+
+        <div class="quiz-card" id="quiz-card">
+            <div id="game-screen">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="question-number" id="question-number">QUESTION 1 OF 5</div>
+                <div class="question-text" id="question-text">Loading question...</div>
+                <div class="options-list" id="options-list">
+                    </div>
+            </div>
+
+            <div class="results-screen" id="results-screen">
+                <div class="score-icon" style="font-size: 4rem; color: #dfb76c; margin-bottom: 20px;">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h2>CHRONICLE COMPLETE</h2>
+                <div class="score-display" id="score-display">0<span>/5</span></div>
+                <div class="feedback-text" id="feedback-text">An impressive journey through time!</div>
+                <div class="quiz-actions">
+                    <button class="action-btn" onclick="resetQuiz()">RETRY QUIZ</button>
+                    <a href="destinations.html" class="action-btn primary">GO TO MAP &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const questionsBank = [
+            {
+                q: "Who was the legendary king that united Upper and Lower Egypt, wearing the double crown?",
+                options: ["King Djoser", "King Narmer", "King Khufu", "Akhenaten"],
+                correct: 1
+            },
+            {
+                q: "Which architect built the famous Step Pyramid at Saqqara for King Djoser?",
+                options: ["Hemiunu", "Ineni", "Imhotep", "Senenmut"],
+                correct: 2
+            },
+            {
+                q: "Who is known as the 'Napoleon of Ancient Egypt' due to his brilliant military campaigns?",
+                options: ["Ramesses II", "Thutmose III", "Ahmose I", "Seti I"],
+                correct: 1
+            },
+            {
+                q: "Which ruler was the final active Pharaoh of the Ptolemaic Kingdom before the Roman conquest?",
+                options: ["Ptolemy I", "Cleopatra VII", "Nectanebo II", "Alexander the Great"],
+                correct: 1
+            },
+            {
+                q: "Who founded Modern Egypt by restructuring the military, economic, and educational frameworks?",
+                options: ["Khedive Ismail", "Ibrahim Pasha", "Muhammad Ali Pasha", "Sa'id Pasha"],
+                correct: 2
+            },
+            {
+                q: "Which leader nationalized the Suez Canal and constructed the Aswan High Dam?",
+                options: ["Mohamed Naguib", "Anwar Sadat", "Gamal Abdel Nasser", "Hosni Mubarak"],
+                correct: 2
+            },
+            {
+                q: "Who led the historic Arab-Islamic opening of Egypt in 641 CE, ending Byzantine rule?",
+                options: ["Ahmad ibn Tulun", "Amr ibn al-As", "Gawhar al-Siqilli", "Salah ad-Din"],
+                correct: 1
+            },
+            {
+                q: "Which Sultan decisively crushed the unstoppable Mongol armies at the Battle of Ain Jalut?",
+                options: ["Al-Zahir Baibars", "Sultan Qansuh al-Ghawri", "Saif ad-Din Qutuz", "Sultan Selim I"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        function shuffleAndPickQuestions() {
+            let shuffled = [...questionsBank].sort(() => 0.5 - Math.random());
+            currentQuestions = shuffled.slice(0, 5);
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            const currentQ = currentQuestions[currentQuestionIndex];
+            
+            document.getElementById("question-number").innerText = `QUESTION ${currentQuestionIndex + 1} OF 5`;
+            document.getElementById("question-text").innerText = currentQ.q;
+            document.getElementById("progress-fill").style.width = `${((currentQuestionIndex + 1) / 5) * 100}%`;
+            
+            const optionsContainer = document.getElementById("options-list");
+            optionsContainer.innerHTML = "";
+            
+            currentQ.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.className = "option-btn";
+                button.innerHTML = `<span>${option}</span><i class="fa-regular fa-circle"></i>`;
+                button.onclick = () => checkAnswer(index, button);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedIndex, clickedButton) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            
+            const currentQ = currentQuestions[currentQuestionIndex];
+            const allButtons = document.querySelectorAll(".option-btn");
+            
+            if (selectedIndex === currentQ.correct) {
+                score++;
+                clickedButton.classList.add("correct");
+                clickedButton.querySelector("i").className = "fa-solid fa-circle-check";
+            } else {
+                clickedButton.classList.add("wrong");
+                clickedButton.querySelector("i").className = "fa-solid fa-circle-xmark";
+                
+                // Show the right answer
+                allButtons[currentQ.correct].classList.add("correct");
+                allButtons[currentQ.correct].querySelector("i").className = "fa-solid fa-circle-check";
+            }
+            
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < 5) {
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
+
+        function showResults() {
+            document.getElementById("game-screen").style.display = "none";
+            document.getElementById("results-screen").style.display = "block";
+            document.getElementById("score-display").innerHTML = `${score}<span>/5</span>`;
+            
+            const feedback = document.getElementById("feedback-text");
+            if (score === 5) {
+                feedback.innerText = "Absolute Perfection! You are a supreme Grand Master of Egyptian history.";
+            } else if (score >= 3) {
+                feedback.innerText = "Splendid work! Your knowledge of the timelines is exceptionally strong.";
+            } else {
+                feedback.innerText = "The cosmic paths require more study. Try again to unlock the forbidden archives.";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById("game-screen").style.display = "block";
+            document.getElementById("results-screen").style.display = "none";
+            shuffleAndPickQuestions();
+            loadQuestion();
+        }
+
+        // Initialize quiz on start
+        shuffleAndPickQuestions();
+        loadQuestion();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Timeline - Nour Beyond Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .timeline-header h1 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(223, 183, 108, 0.3);
+        }
+
+        .timeline-header p {
+            color: #8a7b6e;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-wrapper {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #dfb76c 5%, #dfb76c 95%, transparent);
+            box-shadow: 0 0 15px #dfb76c;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50px;
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 50px;
+            padding-right: 0;
+            margin-left: 50%;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            top: 25px;
+            left: 100%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: #0d0d0d;
+            border: 2px solid #dfb76c;
+            border-radius: 50%;
+            z-index: 5;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(223, 183, 108, 0.5);
+        }
+
+        .timeline-item:nth-child(even) .timeline-badge {
+            left: 0;
+        }
+
+        .timeline-item:hover .timeline-badge {
+            background: #dfb76c;
+            box-shadow: 0 0 20px #dfb76c;
+            scale: 1.3;
+        }
+
+        .timeline-content {
+            background: rgba(20, 20, 20, 0.75);
+            border: 1px solid rgba(223, 183, 108, 0.15);
+            padding: 25px;
+            border-radius: 4px;
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -10px;
+            border-width: 10px 0 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(223, 183, 108, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            right: auto;
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent rgba(223, 183, 108, 0.15) transparent transparent;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            border-color: #dfb76c;
+            box-shadow: 0 10px 30px rgba(223, 183, 108, 0.15);
+        }
+
+        .timeline-item:hover .timeline-content::after {
+            border-left-color: #dfb76c;
+        }
+
+        .timeline-item:nth-child(even):hover .timeline-content::after {
+            border-right-color: #dfb76c;
+        }
+
+        .timeline-date {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Cinzel', serif;
+            color: #8a7b6e;
+            font-size: 0.85rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .timeline-content p {
+            font-family: 'Poppins', sans-serif;
+            color: #a89989;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .next-phase-wrapper {
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(223, 183, 108, 0.1);
+            padding-top: 40px;
+        }
+
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(223, 183, 108, 0.05);
+        }
+
+        .next-btn:hover {
+            background: rgba(223, 183, 108, 0.1);
+            box-shadow: 0 0 30px rgba(223, 183, 108, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .next-btn .arrow {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .next-btn:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                justify-content: flex-start;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 50px;
+            }
+            .timeline-badge {
+                left: 20px !important;
+            }
+            .timeline-content::after {
+                left: -10px !important;
+                border-width: 10px 10px 10px 0 !important;
+                border-color: transparent rgba(223, 183, 108, 0.15) transparent transparent !important;
+            }
+            .timeline-item:hover .timeline-content::after {
+                border-right-color: #dfb76c !important;
+            }
+        }
+    </style>
+</head>
+<body class="booking-page">
+
+    <div class="bg-overlay"></div>
+
+    <div class="timeline-container">
+        
+        <div class="timeline-header">
+            <h1>THE GRAND TIMELINE</h1>
+            <p>Journey from the dawn of Pharaonic dynamic unifications to the modern era of the Egyptian Republic.</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            
+            <!-- Pharaonic Era -->
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">c. 3100 BCE</div>
+                    <h3>King Narmer (Menes)</h3>
+                    <h4>Early Dynastic Period</h4>
+                    <p>The legendary king who united Upper and Lower Egypt, establishing the First Dynasty and the capital of Memphis.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">c. 2670 BCE</div>
+                    <h3>King Djoser</h3>
+                    <h4>Old Kingdom</h4>
+                    <p>Commissioned the famous Step Pyramid at Saqqara, the world's first monumental stone structure.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">c. 2589 BCE</div>
+                    <h3>King Khufu</h3>
+                    <h4>Old Kingdom</h4>
+                    <p>Builder of the Great Pyramid of Giza, the supreme architectural masterpiece and ancient wonder.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">c. 2558 BCE</div>
+                    <h3>King Khafre</h3>
+                    <h4>Old Kingdom</h4>
+                    <p>Constructed the second largest Giza pyramid and carved the colossal Sphinx as an eternal guardian.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">c. 2532 BCE</div>
+                    <h3>King Menkaure</h3>
+                    <h4>Old Kingdom</h4>
+                    <p>Completed the Giza trio by constructing the third pyramid, famed for its elegant triad statues.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1478 – 1458 BCE</div>
+                    <h3>Queen Hatshepsut</h3>
+                    <h4>New Kingdom</h4>
+                    <p>One of Egypt's most successful female pharaohs, expanding trade and constructing Deir el-Bahari temple.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1479 – 1425 BCE</div>
+                    <h3>Thutmose III</h3>
+                    <h4>New Kingdom</h4>
+                    <p>A supreme military general who created Egypt's largest empire through seventeen brilliant campaigns.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1388 – 1351 BCE</div>
+                    <h3>Amenhotep III</h3>
+                    <h4>New Kingdom</h4>
+                    <p>Ruled during a golden age of unprecedented wealth, cultural diplomacy, and monumental art expansion.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1351 – 1334 BCE</div>
+                    <h3>Akhenaten</h3>
+                    <h4>New Kingdom</h4>
+                    <p>Triggered a religious revolution by introducing monotheistic worship centered on the sun disc, Aten.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1332 – 1323 BCE</div>
+                    <h3>Tutankhamun</h3>
+                    <h4>New Kingdom</h4>
+                    <p>The boy king who restored the traditional gods and whose intact golden tomb stunned the modern world.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1319 – 1292 BCE</div>
+                    <h3>Horemheb</h3>
+                    <h4>New Kingdom</h4>
+                    <p>The general-turned-pharaoh who stabilized the nation, crushed corruption, and reformed the legal codes.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1290 – 1279 BCE</div>
+                    <h3>Seti I</h3>
+                    <h4>New Kingdom</h4>
+                    <p>Restored Egypt's foreign prestige and built the breathtaking Hypostyle Hall at Karnak temple.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1279 – 1213 BCE</div>
+                    <h3>Ramesses II</h3>
+                    <h4>New Kingdom</h4>
+                    <p>Ramesses the Great; celebrated warrior who signed the world's first peace treaty and carved Abu Simbel.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1186 – 1155 BCE</div>
+                    <h3>Ramesses III</h3>
+                    <h4>New Kingdom</h4>
+                    <p>The last great warrior pharaoh, famously defending Egypt against the massive invasions of the Sea Peoples.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">360 – 342 BCE</div>
+                    <h3>Nectanebo II</h3>
+                    <h4>Late Period</h4>
+                    <p>The final native Egyptian pharaoh of antiquity before the country fell to persistent foreign conquest.</p>
+                </div>
+            </div>
+
+            <!-- Persian & Greco-Roman Era -->
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">525 BCE</div>
+                    <h3>Cambyses II (Persian Conquest)</h3>
+                    <h4>Achaemenid Empire</h4>
+                    <p>The Persian king who defeated Pharaoh Psamtik III, turning Egypt into a province of the Persian Empire.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">332 BCE</div>
+                    <h3>Alexander the Great</h3>
+                    <h4>Macedonian Empire</h4>
+                    <p>Liberated Egypt from Persian rule, was declared a son of Amun, and laid the foundations of Alexandria.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">305 – 282 BCE</div>
+                    <h3>Ptolemy I Soter</h3>
+                    <h4>Ptolemaic Kingdom</h4>
+                    <p>General of Alexander who crowned himself king, initiating the famous Greek rule over the Egyptian state.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">51 – 30 BCE</div>
+                    <h3>Cleopatra VII</h3>
+                    <h4>Ptolemaic Kingdom</h4>
+                    <p>The iconic, brilliant final ruler of the Ptolemaic dynasty whose dramatic reign led to the Roman conquest.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">30 BCE</div>
+                    <h3>Augustus Caesar</h3>
+                    <h4>Roman Empire</h4>
+                    <p>Annexed Egypt directly into the Roman Empire as its most prized and highly guarded agricultural province.</p>
+                </div>
+            </div>
+
+            <!-- Islamic & Medieval Era -->
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">641 CE</div>
+                    <h3>Amr ibn al-As</h3>
+                    <h4>Rashidun Caliphate</h4>
+                    <p>Led the Arab-Islamic opening of Egypt, ending Byzantine dominion and founding the new capital of Fustat.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">868 – 884 CE</div>
+                    <h3>Ahmad ibn Tulun</h3>
+                    <h4>Tulunid Dynasty</h4>
+                    <p>Founded the Tulunid dynasty, achieving Egypt's first independent statehood from the central Abbasid Caliphate.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">969 CE</div>
+                    <h3>Gawhar al-Siqilli</h3>
+                    <h4>Fatimid Caliphate</h4>
+                    <p>The brilliant general who conquered Egypt and built the historic walls of Cairo and the sacred Al-Azhar Mosque.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">973 – 975 CE</div>
+                    <h3>Al-Mu'izz li-Din Allah</h3>
+                    <h4>Fatimid Caliphate</h4>
+                    <p>The first Fatimid caliph to reside in Egypt, officially shifting the seat of the empire to Cairo.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1171 – 1193 CE</div>
+                    <h3>Salah ad-Din (Saladin)</h3>
+                    <h4>Ayyubid Dynasty</h4>
+                    <p>Founded the Ayyubid dynasty, fortified Cairo with its famous Citadel, and defended the Levant against Crusaders.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1259 – 1260 CE</div>
+                    <h3>Saif ad-Din Qutuz</h3>
+                    <h4>Mamluk Sultanate</h4>
+                    <p>The heroic Sultan who decisively crushed the seemingly unstoppable Mongol armies at the Battle of Ain Jalut.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1260 – 1277 CE</div>
+                    <h3>Al-Zahir Baibars</h3>
+                    <h4>Mamluk Sultanate</h4>
+                    <p>A brilliant administrator and commander who institutionalized the dominant golden era of the Mamluk Empire.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1501 – 1516 CE</div>
+                    <h3>Sultan Qansuh al-Ghawri</h3>
+                    <h4>Mamluk Sultanate</h4>
+                    <p>Reconstructed massive civic projects before dying in epic combat defending Syria from Ottoman annexation.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1517 CE</div>
+                    <h3>Sultan Selim I</h3>
+                    <h4>Ottoman Empire</h4>
+                    <p>Defeated the Mamluks at Ridaniya, transforming Egypt into an official administrative Ottoman Eyalet.</p>
+                </div>
+            </div>
+
+            <!-- Modern Era -->
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1805 – 1848 CE</div>
+                    <h3>Muhammad Ali Pasha</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>The founder of Modern Egypt; completely restructured the military, educational, economic, and industrial systems.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1848 CE</div>
+                    <h3>Ibrahim Pasha</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>A highly accomplished military general who expanded regional campaigns before briefly securing the throne.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1854 – 1863 CE</div>
+                    <h3>Sa'id Pasha</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>Signed the critical initial concession granting the permission to excavate and build the Suez Canal.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1863 – 1879 CE</div>
+                    <h3>Khedive Ismail</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>Modernized Cairo dramatically, inaugurated the Suez Canal, and aggressively expanded educational frameworks.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1914 – 1917 CE</div>
+                    <h3>Sultan Hussein Kamel</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>Declared Sultan during World War I as Great Britain declared an official unilateral Protectorate over Egypt.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1917 – 1936 CE</div>
+                    <h3>King Fuad I</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>Transformed his title from Sultan to King in 1922 following the historic nominal unilateral independence declaration.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1936 – 1952 CE</div>
+                    <h3>King Farouk I</h3>
+                    <h4>Alawiyya Dynasty</h4>
+                    <p>The final absolute reigning monarch of Egypt, whose administration was overthrown by the 1952 Revolution.</p>
+                </div>
+            </div>
+
+            <!-- Republican Era -->
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1953 – 1954 CE</div>
+                    <h3>Mohamed Naguib</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>The very first official President of Egypt following the formal abolition of the hereditary monarchy system.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1954 – 1970 CE</div>
+                    <h3>Gamal Abdel Nasser</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>Nationalized the Suez Canal, constructed the High Dam, and spearheaded the global Pan-Arab movement.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1970 – 1981 CE</div>
+                    <h3>Anwar Sadat</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>Led the historic 1973 October War victory, reassigned the open economy, and signed the historic Camp David Accord.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">1981 – 2011 CE</div>
+                    <h3>Hosni Mubarak</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>Maintained regional political stability and focused heavily on vast domestic infrastructure expansions over three decades.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2012 – 2013 CE</div>
+                    <h3>Mohamed Morsi</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>Served as president for one year following elections, before massive public protests led to his political removal.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2013 – 2014 CE</div>
+                    <h3>Adly Mansour</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>The Chief Justice of the Supreme Constitutional Court who served as transitional president during a critical interim period.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2014 – Present</div>
+                    <h3>Abdel Fattah El-Sisi</h3>
+                    <h4>Egyptian Republic</h4>
+                    <p>Focuses on comprehensive national structural updates, constructing the New Administrative Capital, and massive economic corridors.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="next-phase-wrapper">
+            <a href="quiz.html" class="next-btn">
+                ENTER THE SACRED QUIZ <span class="arrow">&rarr;</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

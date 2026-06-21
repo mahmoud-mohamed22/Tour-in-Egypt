@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Library - Nour Beyond Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .library-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .library-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .library-header h1 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(223, 183, 108, 0.3);
+        }
+
+        .library-header p {
+            color: #8a7b6e;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 40px;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .book-container {
+            perspective: 1000px;
+            height: 360px;
+            cursor: pointer;
+        }
+
+        .book-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.6);
+            border-radius: 4px;
+        }
+
+        .book-container:hover .book-inner {
+            transform: rotateY(-180deg) scale(1.02);
+            box-shadow: -5px 5px 25px rgba(223, 183, 108, 0.15);
+        }
+
+        .book-front, .book-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 4px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .book-front {
+            border-right: 8px solid #dfb76c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .book-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 3px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 1px 0 3px rgba(255,255,255,0.08);
+        }
+
+        .book-title {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-align: center;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        .book-back {
+            background: #141414;
+            border: 2px solid #dfb76c;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .book-back h3 {
+            font-family: 'Cinzel', serif;
+            color: #dfb76c;
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(223, 183, 108, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .book-back p {
+            font-family: 'Poppins', sans-serif;
+            color: #a89989;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .b-mina { background: #3a1c1c; }
+        .b-thutmose { background: #1c2a3a; }
+        .b-ahmose { background: #1c3a24; }
+        .b-khufu { background: #332a1c; }
+        .b-khafre { background: #2c1c3a; }
+        .b-menkaure { background: #1c363a; }
+        .b-djoser { background: #3a361c; }
+
+        .next-phase-wrapper {
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid rgba(223, 183, 108, 0.1);
+            padding-top: 30px;
+        }
+
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #dfb76c;
+            color: #dfb76c;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(223, 183, 108, 0.05);
+        }
+
+        .next-btn:hover {
+            background: rgba(223, 183, 108, 0.1);
+            box-shadow: 0 0 30px rgba(223, 183, 108, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .next-btn .arrow {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .next-btn:hover .arrow {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body class="booking-page">
+
+    <div class="bg-overlay"></div>
+
+    <div class="library-container">
+        
+        <div class="library-header">
+            <h1>THE ANCIENT LIBRARY</h1>
+            <p>Hover over the grand volumes to open and unlock the chronicles of Egypt's legendary rulers.</p>
+        </div>
+
+        <div class="books-grid">
+            
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-mina">
+                        <div class="book-title">King Narmer</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>King Menes (Narmer)</h3>
+                        <p>The legendary unifier of Upper and Lower Egypt. Founder of the First Dynasty, he wore the double crown and established the ancient capital of Memphis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-thutmose">
+                        <div class="book-title">Thutmose III</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>Thutmose III</h3>
+                        <p>The Napoleon of ancient Egypt. A supreme military genius who conducted 17 successful campaigns, expanding the empire to its absolute zenith.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-ahmose">
+                        <div class="book-title">Ahmose I</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>Ahmose I</h3>
+                        <p>The great liberator. He expelled the Hyksos invaders from Egypt, unified the nation once more, and founded the glorious 18th Dynasty.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-khufu">
+                        <div class="book-title">King Khufu</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>King Khufu</h3>
+                        <p>Kimissioned the Great Pyramid of Giza, the only surviving wonder of the ancient world. A monument of perfect mathematical precision.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-khafre">
+                        <div class="book-title">King Khafre</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>King Khafre</h3>
+                        <p>Builder of the second largest pyramid of Giza and the creator of the enigmatic Great Sphinx, guarding the sacred plateau for eternity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-menkaure">
+                        <div class="book-title">Menkaure</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>King Menkaure</h3>
+                        <p>Builder of the third Giza pyramid. Known for his stunning triad statues depicting him alongside ancient Egyptian deities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-container">
+                <div class="book-inner">
+                    <div class="book-front b-djoser">
+                        <div class="book-title">King Djoser</div>
+                    </div>
+                    <div class="book-back">
+                        <h3>King Djoser</h3>
+                        <p>The pharaoh of the Step Pyramid at Saqqara, the world's earliest monumental stone structure, designed by his brilliant vizier Imhotep.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="next-phase-wrapper">
+            <a href="timeline.html" class="next-btn">
+                PROCEED TO THE TIMELINE <span class="arrow">&rarr;</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
