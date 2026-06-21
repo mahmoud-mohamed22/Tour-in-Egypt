@@ -49,18 +49,19 @@
 
             
             <div class="map-hotspot hotspot-cairo">
-                <div class="pin"></div>
-                <div class="pulse"></div>
-                <span class="location-name">Cairo</span>
-                <div class="map-tooltip">
-                    <img src="images/the-grand-egyptian-museum.jpg" alt="The Grand Egyptian Museum" class="tooltip-img">
-                    <div class="tooltip-info">
-                        <h3>Grand Egyptian Museum</h3>
-                        <p>Virtual Tour Available</p>
-                        <a href="tours/cairo-360.html" class="visit-btn">VISIT</a>    
-                    </div>
-                </div>
-            </div>
+    <div class="pin"></div>
+    <div class="pulse"></div>
+    <span class="location-name">Cairo</span>
+    <div class="map-tooltip">
+        <img src="images/the-grand-egyptian-museum.jpg" alt="The Grand Egyptian Museum" class="tooltip-img">
+        <div class="tooltip-info">
+            <h3>Grand Egyptian Museum</h3>
+            <p>Virtual Tour Available</p>
+            
+            <a href="cairo.html" class="visit-btn">VISIT</a>    
+        </div>
+    </div>
+</div>
 
             
             <div class="map-hotspot hotspot-alexandria">
@@ -138,6 +139,24 @@
             </div>
 
         </div>
+
+        <div id="destination-card" class="custom-overlay hidden">
+    <div class="ancient-popup-card">
+        <button onclick="closeDestinationCard()" class="close-popup-btn">✕</button>
+        <h3 id="card-title"></h3>
+        <p id="card-description" style="margin-top: 15px;"></p>
+        <button id="start-tour-btn" class="gold-tour-btn">
+            𓋹 ابدأ الجولة الافتراضية 360°
+        </button>
+    </div>
+</div>
+
+<div id="panorama-viewer-container" class="custom-fullscreen-viewer hidden">
+    <button onclick="closePanorama()" class="exit-tour-btn">
+        𓋹 إنهاء الجولة والعودة للخريطة
+    </button>
+    <iframe id="panorama-iframe" src="" allow="accelerometer; gyroscope; magnetometer; vr"></iframe>
+</div>
     </main>
 
 </body>

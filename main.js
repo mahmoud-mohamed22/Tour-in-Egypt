@@ -25,7 +25,49 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "destinations.html";
             }, 2000);
         });
-    }
-
-    
+    }  
 });
+const destinationsData = {
+    cairo: {
+        title: "المتحف المصري الكبير - Grand Egyptian Museum",
+        description: "اكتشف الصرح الأثري الأكبر في العالم الذي يضم أسرار وحضارة ملوك الفراعنة عبر الزمن، واستمتع برؤية تمثال رمسيس الثاني والقطع الأثرية النادرة بجودة أسطورية عبر جولة 360 درجة مذهلة.",
+        panoramaUrl: "https://my.matterport.com/show/?m=92gAnP6N5Nf&mls=1" 
+    }
+};
+
+function openDestinationCard(cityKey) {
+    const data = destinationsData[cityKey];
+    if (!data) return;
+
+    document.getElementById('card-title').innerText = data.title;
+    document.getElementById('card-description').innerText = data.description;
+    
+    const tourBtn = document.getElementById('start-tour-btn');
+    tourBtn.onclick = function() {
+        startPanoramaTour(data.panoramaUrl);
+    };
+
+    // إظهار الـ Popup
+    document.getElementById('destination-card').classList.remove('hidden');
+}
+
+function closeDestinationCard() {
+    document.getElementById('destination-card').classList.add('hidden');
+}
+
+function startPanoramaTour(url) {
+    closeDestinationCard(); 
+    const viewerContainer = document.getElementById('panorama-viewer-container');
+    const iframe = document.getElementById('panorama-iframe');
+    
+    iframe.src = url; 
+    viewerContainer.classList.remove('hidden'); 
+}
+
+function closePanorama() {
+    const viewerContainer = document.getElementById('panorama-viewer-container');
+    const iframe = document.getElementById('panorama-iframe');
+    
+    iframe.src = ""; 
+    viewerContainer.classList.add('hidden');
+}
