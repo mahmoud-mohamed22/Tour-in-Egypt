@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <audio id="bgMusic" src="pharaoh.mpeg" loop autoplay></audio>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        
+        // محاولة التشغيل تلقائياً (المتصفحات الحديثة ممكن تمنع ده لحد ما المستخدم يعمل أول كليك في الموقع)
+        music.play().catch(error => {
+            console.log("المتصفح منع التشغيل التلقائي، بانتظار تفاعل المستخدم.");
+        });
+
+        // رسالة بين الـ iframe والصفحة الرئيسية عشان التحكم
+        window.addEventListener('message', (event) => {
+            if (event.data === 'play') music.play();
+            if (event.data === 'pause') music.pause();
+        });
+    </script>
+</body>
+</html>

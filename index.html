@@ -24,8 +24,6 @@
             <nav class="nav-links">
                 <a href="#" class="active">HOME</a>
                 <a href="ABOUT_EGYPT.html">ABOUT EGYPT</a>
-                <!-- <a href="#">HISTORY</a> -->   
-                <!-- <a href="#">GALLERY</a> --> 
                 <a href="CONTACT.html">CONTACT</a>
             </nav>
 
@@ -79,13 +77,14 @@
             </div>
             <div class="feature-divider"></div>
 
-            <div class="feature-item">
-                <i class="fa-solid fa-headphones"></i>
-                <div class="feature-text">
-                    <h3>LISTEN</h3>
-                    <p>Immersive audio guides</p>
-                </div>
-            </div>
+          
+            <div class="feature-item" id="musicBtn" style="cursor: pointer; transition: all 0.3s ease;">
+             <i class="fa-solid fa-headphones" id="musicIcon"></i>
+         <div class="feature-text">
+        <h3 id="musicTitle">LISTEN</h3>
+        <p id="musicSub">Immersive audio guides</p>
+       </div>
+</div>
             <div class="feature-divider"></div>
 
             <div class="feature-item">
@@ -98,6 +97,7 @@
         </footer>
 
     </div>
+<iframe src="audio-player.html" id="audioFrame" style="display:none;"></iframe>
     <script src="main.js"></script>
 </body>
 </html>

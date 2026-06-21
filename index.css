@@ -802,3 +802,9 @@ body.map-page {
 .map-hotspot:hover .map-tooltip {
     z-index: 1000 !important;
 }
+/* تأثير لما الزرار يبقى شغال */
+.feature-item.playing {
+    color: #dfb76c; /* اللون الذهبي */
+    border-bottom: 2px solid #dfb76c; /* خط تحت الكلمة يوحي إنه شغال */
+    transform: translateY(-5px);
+}

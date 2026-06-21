@@ -27,3 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }  
 });
+const musicBtn = document.getElementById('musicBtn');
+const audioFrame = document.getElementById('audioFrame');
+let isPlaying = true;
+
+if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+        const musicTitle = document.getElementById('musicTitle');
+        
+        if (isPlaying) {
+            audioFrame.contentWindow.postMessage('pause', '*');
+            musicTitle.innerText = "LISTEN";
+            isPlaying = false;
+        } else {
+            audioFrame.contentWindow.postMessage('play', '*');
+            musicTitle.innerText = "PAUSE";
+            isPlaying = true;
+        }
+    });
+}
